@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta property="og:title" content="Share Price Analysis">
+		<meta property="og:image" content="images/gas.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+			
+		<title>Share Price Analysis</title>
+		<link rel="icon" href="images/oil.png">
+		
+		<script src="https://d3js.org/d3.v5.min.js"></script> <!-- ADD THIS-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script> <!-- ADD THIS-->		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link rel="icon" href="./img/icon-weather.png">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		
+
+
+		<link rel="stylesheet" href="static/css/ebola-style.css">
+		
+	</head>
+	
+<body>
+<div class="wrapper">
+
+<!-------------- Navigation Bar  ---------------->
+<nav class="navbar navbar-expand-lg navbar-expand navbar-white flex-column flex-md-row navbar-light">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarCollapse" aria-controls="navbarCollapse navbarNavDropdown" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	
+	 <!-- <a class="navbar-brand nav-link active nav-item" id="btn-nvg" href="index.html" src="images/gas.png"></a> -->
+	
+	
+	<div class="collapse justify-content-end navbar-collapse navbar-collapse collapse show">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item dropdown" id="navbarCollapse">
+				<a class="nav-link active dropdown-toggle" href="#" id="navbarPlot" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Analysis<span class="sr-only">(current)</span></a>
+				
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="Data Collection and Cleaning.html">Data Sources</a>
+			<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="oil price analyse.html">Oil Price Analysis</a>
+
+			<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="share price analyse.html">Share Price Analysis</a>
+		
+			<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="oil and share price vs revenue and unemployment.html">Oil and Share price vs revenue/Unemployment</a>
+			<!-- <div class="dropdown-divider"></div> -->
+				<!-- <a class="dropdown-item" href="enddata.html">source data</a> -->
+				<!-- <a class="dropdown-item" href="Data/enddata.csv"  href="Data/P3_Data.csv" target="_blank">Download</a> -->
+				
+			</li>
+				
+			<li class="nav-item">
+				<a class="nav-link active a" id="navbarRight" href="MachineLearning.html">ML Code</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+	<div class="container">
+		<div class="box" id="earthquakes-box">
+			<div class="row">
+				<div class="col-md-12">
+					<br>
+       				 <div class="title">Share Price Analysis</div>
+						<hr>
+						<p class="a" style="text-align: left;">
+							<img id="img" src="images/nick-chong-N__BnvQ_w18-unsplash.jpg">
+							<br>
+							<br>
+							<il>A million-dollar question is what factors can be used to predict future share prices? Our humble attempt was to brainstorm what internal & external factors would most likely impact share prices of large Energy companies. Our belief was that one of the top factors would be the price of oil. Four factors for each were selected:</il>
+							<br>
+							<br>
+							<ul> <strong>Internal</strong> :Revenue, Expenses, Divident Yield, & Cash Flow</ul>
+							<ul> <strong>External</strong> :US Interest Rate, US Unemployment Rate, Brent Oil Price, & LNG Price</ul>
+							<br>
+							Data was gathered for 6 selected large energy companues: <strong>Exxon ( XOM ), BP, Equinor ( EQNR ), Chevron ( CVX ), Shell ( RDS-A ), & Total ( TOT ).</strong> 
+							<br>
+							<br>
+							We started by running a coefficient matrix to check that all variables were independent of each other. It was found that Expenses & Revenue were highly related, therefore we decided to drop Expenses to reduce bias in the dataset. Then we ran a statistical summary to check the significance. Revenue, Dividend Yield, Cash Flow, & Unemployment Rate were all significant and the remaining variables were insignificant.
+						<br>
+						</p>
+						
+						<!-- <p class="a">We have decided to perform an analysis on this current crisis that is affecting all countries worldwide. We examined the amount of cases and deaths that have been reported for every country, as well as compared the amount of cases per state within the United States. Moreover, we compared the gender demographics and death rates for people infected with this virus. Finally, we performed an analysis on Ebola virus disease and the 2014 epidemic, to compare the characteristics between an epidemic and pandemic for these two viruses. -->
+		 				</p>
+						<hr>
+						<br>
+				</div>	
+				
+			</div>
+					<br>
+					<br>
+  
+		</div>
+</div>
+</div>
+
+</body>
+
+</html>
